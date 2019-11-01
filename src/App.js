@@ -19,15 +19,18 @@ deletePersonHandler = (personIndex)=>{
     this.setState({persons: persons});
 }
 
-changeNameHandler = (event) =>{
-console.log(event.target.value);
-  this.setState({
-    persons : [
-      {name:  "Abdelmoughit", years: 5},
-      {name: event.target.value, years: 5}
-    ]
-   })
+changeNameHandler = (event , personId) =>{
 
+    const personIndex = this.state.persons.findIndex(person=>{
+        return person.id === personId;
+    })
+
+    const person = {...this.state.persons[personIndex]};
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+    this.setState({persons : persons})
 }
 
 togglePersonsHandler = ()=>{
@@ -53,22 +56,10 @@ togglePersonsHandler = ()=>{
                         click={this.deletePersonHandler.bind(this,index)}
                         name={person.name}
                         years={person.years}
-                        key={person.id}/>
+                        key={person.id}
+                        changed={(event)=>this.changeNameHandler(event,person.id)}/>
                 })}
             </div>
-
-            /*<div>
-                <Person
-                    click={this.switchNameHandler.bind(this,'Abdo Ra')}
-                    name={this.state.persons[0].name}
-                    years={this.state.persons[0].years} >
-                    *YES I WILL BE RICH INCHAALAH*
-                </Person>
-                <Person
-                    changed={this.changeNameHandler}
-                    name={this.state.persons[1].name}
-                    years={this.state.persons[1].years} />
-            </div>*/
         );
     }
 
