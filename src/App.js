@@ -12,14 +12,11 @@ state = {
   showPersons: false
 }
 
-switchNameHandler = (newName) =>{
- //console.log ('switchNameHandler');
- this.setState({
-  persons : [
-    {name: newName , years: 2},
-    {name: "Younes", years: 3}
-  ]
- })
+deletePersonHandler = (personIndex)=>{
+    //const persons = this.state.persons;
+    const persons = [...this.state.persons];//SPREAD OPERATOR , CREATE A COPIE FROM THE TABLE
+    persons.splice(personIndex,1);
+    this.setState({persons: persons});
 }
 
 changeNameHandler = (event) =>{
@@ -51,6 +48,15 @@ togglePersonsHandler = ()=>{
     if(this.state.showPersons){
         persons = (
             <div>
+                {this.state.persons.map( (person,index) => {
+                    return <Person
+                        click={this.deletePersonHandler.bind(this,index)}
+                        name={person.name}
+                        years={person.years} />
+                })}
+            </div>
+
+            /*<div>
                 <Person
                     click={this.switchNameHandler.bind(this,'Abdo Ra')}
                     name={this.state.persons[0].name}
@@ -61,7 +67,7 @@ togglePersonsHandler = ()=>{
                     changed={this.changeNameHandler}
                     name={this.state.persons[1].name}
                     years={this.state.persons[1].years} />
-            </div>
+            </div>*/
         );
     }
 
