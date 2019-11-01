@@ -6,8 +6,8 @@ import Person from './Person/Person';
 class App extends Component {
 state = {
   persons : [
-    {name: "Abdelmoughit", years: 5},
-    {name: "Younes", years: 5}
+    {id: 1, name: "Abdelmoughit", years: 5},
+    {id: 2, name: "Younes", years: 5}
   ],
   showPersons: false
 }
@@ -52,7 +52,8 @@ togglePersonsHandler = ()=>{
                     return <Person
                         click={this.deletePersonHandler.bind(this,index)}
                         name={person.name}
-                        years={person.years} />
+                        years={person.years}
+                        key={person.id}/>
                 })}
             </div>
 
