@@ -7,7 +7,9 @@ class App extends Component {
 state = {
   persons : [
     {id: 1, name: "Abdelmoughit", years: 5},
-    {id: 2, name: "Younes", years: 5}
+    {id: 2, name: "Younes", years: 5},
+    {id: 3, name: "Amine", years: 5},
+    {id: 4, name: "Saad", years: 5}
   ],
   showPersons: false
 }
@@ -21,7 +23,7 @@ deletePersonHandler = (personIndex)=>{
 
 changeNameHandler = (event , personId) =>{
 
-    const personIndex = this.state.persons.findIndex(person=>{
+    const personIndex = this.state.persons.findIndex(person => {
         return person.id === personId;
     })
 
@@ -65,7 +67,7 @@ togglePersonsHandler = ()=>{
 
    return (
       <div className="App">
-        <h1>Hi, I'm a React App</h1>
+        <h1>Hi, I'm an App</h1>
         <button
           style={style}
           onClick={this.togglePersonsHandler}>Toggle Persons</button>
