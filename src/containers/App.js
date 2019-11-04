@@ -42,36 +42,23 @@ class App extends Component {
 
   render() {
 
-    let btnClass = '';
     let persons = null;
 
     if (this.state.showPersons) {
-      persons = (
-        <div>
-            <Persons
+      persons = <Persons
                 persons={this.state.persons}
                 clicked={this.deletePersonHandler}
-                changed={this.changeNameHandler}/>
-        </div>
-      );
-      btnClass = classes.Red;
-    }
-
-    const assinedClasses = [];
-
-    if (this.state.persons.length <= 2) {
-      assinedClasses.push(classes.red);
-    }
-    if (this.state.persons.length <= 1) {
-      assinedClasses.push(classes.bold);
+                changed={this.changeNameHandler}/>;
     }
 
     return (
-      <Cockpit
-        clicked={this.togglePersonsHandler}
-        persons={persons}
-        assinedClasses={assinedClasses}
-        btnClass={btnClass} />
+        <div className={classes.App}>
+            <Cockpit
+                clicked={this.togglePersonsHandler}
+                persons={this.state.persons}
+                showPersons={this.state.showPersons} />
+             {persons}
+        </div>
     );
 
   }
