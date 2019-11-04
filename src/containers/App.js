@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-// import Radium, { StyleRoot } from 'radium';
-import Person from '../components/Persons/Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 
 class App extends Component {
@@ -48,14 +48,10 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return <Person
-                click={this.deletePersonHandler.bind(this, index)}
-                name={person.name}
-                years={person.years}
-                key={person.id}
-                changed={(event) => this.changeNameHandler(event, person.id)} />
-          })}
+            <Persons
+                persons={this.state.persons}
+                clicked={this.deletePersonHandler}
+                changed={this.changeNameHandler}/>
         </div>
       );
       btnClass = classes.Red;
@@ -71,18 +67,13 @@ class App extends Component {
     }
 
     return (
-      <div className={classes.App}>
-        <h1>Hi, I'm an App</h1>
-        <p className={assinedClasses.join(' ')} >This is really working!</p>
-        <button
-          className={btnClass}
-          onClick={this.togglePersonsHandler}>Toggle Persons</button>
-        {persons}
-      </div>
+      <Cockpit
+        clicked={this.togglePersonsHandler}
+        persons={persons}
+        assinedClasses={assinedClasses}
+        btnClass={btnClass} />
     );
-    /* return React.createElement("div",{className:"App"},
-    React.createElement("h1",null,"Hi, I'm a React App")); */
+
   }
 }
 export default App;
-// export default Radium(App);
