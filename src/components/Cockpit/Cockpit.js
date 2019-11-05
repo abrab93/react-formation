@@ -17,14 +17,17 @@ const cockpit = (props) => {
         //http request...
         setTimeout(() => {
             alert('Data mounted to the cloud!!');
-        },1000)
+        },1000);
+        return (()=>{
+            console.log('[cockpit.js] useEffect cleanning up!!');
+        })
     },[]); // ==> componentDidMount
 
     useEffect(() =>{
         return (()=>{
             console.log('[cockpit.js] useEffect 2nd cleanning up!!');
         })
-    },[]);
+    });
 
     const assinedClasses = [];
     let btnClass = '';
