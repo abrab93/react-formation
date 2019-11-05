@@ -25,16 +25,16 @@ class App extends Component {
       return state;
   }
 
-  componentDidMount(){
+  componentDidMount(){//*
       console.log('[App.js] componentDidMount');
   }
 
-  shouldComponentUpdate(nextProps, nextState){
+  shouldComponentUpdate(nextProps, nextState){//*
       console.log('[App.js] shouldComponentUpdate');
       return true;
   }
 
-  componentDidUpdate(){
+  componentDidUpdate(){//*
       console.log('[App.js] componentDidUpdate');
   }
 

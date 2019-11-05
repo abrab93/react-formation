@@ -1,8 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import classes from './Cockpit.css';
 
 
 const cockpit = (props) => {
+
+    /*useEffect(() =>{
+        console.log('[cockpit.js] useEffect');
+        //http request...
+        setTimeout(() => {
+            alert('Data mounted to the cloud!!');
+        },1000)
+    },[props.persons]);*/
+
+     useEffect(() =>{
+        console.log('[cockpit.js] useEffect');
+        //http request...
+        setTimeout(() => {
+            alert('Data mounted to the cloud!!');
+        },1000)
+    },[]); // ==> componentDidMount
 
     const assinedClasses = [];
     let btnClass = '';

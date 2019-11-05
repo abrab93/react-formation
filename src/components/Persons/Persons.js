@@ -8,7 +8,7 @@ class Persons extends Component{
     return state;
 }*/
 
-shouldComponentUpdate(nextProps, nestState){
+shouldComponentUpdate(nextProps, nestState){//*
     console.log('[Persons.js] shouldComponentUpdate');
     return true;
 }
@@ -18,7 +18,7 @@ getSnapshotBeforeUpdate(prevProps, prevState){
     return {message: 'Snapshot!' };
 }
 
-componentDidUpdate(prevProps, prevState, snapshot){
+componentDidUpdate(prevProps, prevState, snapshot){//*
     console.log('[Persons.js] componentDidUpdate');
     console.log(snapshot);
 }
