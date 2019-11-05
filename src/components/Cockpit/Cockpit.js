@@ -12,13 +12,19 @@ const cockpit = (props) => {
         },1000)
     },[props.persons]);*/
 
-     useEffect(() =>{
+    useEffect(() =>{
         console.log('[cockpit.js] useEffect');
         //http request...
         setTimeout(() => {
             alert('Data mounted to the cloud!!');
         },1000)
     },[]); // ==> componentDidMount
+
+    useEffect(() =>{
+        return (()=>{
+            console.log('[cockpit.js] useEffect 2nd cleanning up!!');
+        })
+    },[]);
 
     const assinedClasses = [];
     let btnClass = '';
