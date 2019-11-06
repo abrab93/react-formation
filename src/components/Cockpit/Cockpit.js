@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import classes from './Cockpit.css';
+import classes from '../Cockpit/Cockpit.css';
 
 
 const cockpit = (props) => {
@@ -45,7 +45,7 @@ const cockpit = (props) => {
     }
 
     return (
-        <div>
+        <div className={classes.Cockpit}>
             <h1>{props.appTitle}</h1>
             <p className={assinedClasses.join(' ')} >This is really working!</p>
             <button
