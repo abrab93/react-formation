@@ -2,21 +2,41 @@ import React, {Component} from 'react';
 // import Radium from 'radium';
 import Aux from '../../../hoc/Auxilary';
 import withClass from '../../../hoc/withClass';
+import PropTypes from 'prop-types'; // npm install --save prop-types
 
 import classes from './Person.css';
 
 class Person extends Component {
+    constructor(props){
+        super(props);
+        this.inputElemRef = React.createRef();
+    }
 
-    render(){
+    componentDidMount(){
+        this.inputElemRef.current.focus();
+    }
+
+    render(){ 
     console.log('[Person.js] rendering...');
         return (
             <Aux>
                 <p onClick={this.props.click}>I'm {this.props.name} and i will get rich after this.{this.props.years} years !!</p>
                 <p>{this.props.children}</p>
-                <input  type='text' onChange={this.props.changed} value={this.props.name}></input>
+                <input  
+                    ref={this.inputElemRef}
+                    type='text' 
+                    onChange={this.props.changed} 
+                    value={this.props.name}></input>
             </Aux>
         )
     }
+}
+
+Person.propTypes = {
+    name: PropTypes.string,
+    click: PropTypes.func,
+    years: PropTypes.number,
+    changed: PropTypes.func
 }
 
 // export default Radium(person);

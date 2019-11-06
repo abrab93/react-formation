@@ -20,7 +20,8 @@ class App extends Component {
       { id: 4, name: "Saad", years: 5 }
     ],
     showPersons: false,
-    showCockpit: true
+    showCockpit: true,
+    changeCounter: 0
   }
 
   static getDerivedStateFromProps(props, state){
@@ -59,7 +60,14 @@ class App extends Component {
 
     const persons = [...this.state.persons];
     persons[personIndex] = person;
-    this.setState({ persons: persons })
+    // when we depend on the prev state its better to use setState with the anonymous fonction as a parametre not the one with object version
+    // in this cas we have to increment changeCounter on every keyStrok , as result we need the old state for this var so we can add 1 to it .. 
+    this.setState((prevState, props) => {
+      return { 
+        persons: persons, 
+        changeCounter: prevState.changeCounter + 1 
+      };
+    });
   }
 
   togglePersonsHandler = () => {
