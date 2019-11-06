@@ -16,12 +16,8 @@ const cockpit = (props) => {
 
     useEffect(() =>{
         console.log('[cockpit.js] useEffect');
-        //http request...
-        // setTimeout(() => {
-        //     alert('Data mounted to the cloud!!');
-        // },1000);
-
         toggleBtnRef.current.click();
+        
         return (()=>{
             console.log('[cockpit.js] useEffect cleanning up!!');
         })
@@ -56,6 +52,8 @@ const cockpit = (props) => {
                 ref={toggleBtnRef}
                 className={btnClass}
                 onClick={props.clicked}>Toggle Persons</button>
+            <button
+                onClick={props.login}>Login</button>    
         </div>
 )};
 
