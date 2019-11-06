@@ -32,11 +32,11 @@ const cockpit = (props) => {
     const assinedClasses = [];
     let btnClass = '';
 
-    if (props.persons.length <= 2) {
+    if (props.personsLength <= 2) {
       assinedClasses.push(classes.red);
     }
 
-    if (props.persons.length <= 1) {
+    if (props.personsLength <= 1) {
       assinedClasses.push(classes.bold);
     }
 
@@ -54,4 +54,4 @@ const cockpit = (props) => {
         </div>
 )};
 
-export default cockpit
+export default React.memo(cockpit)

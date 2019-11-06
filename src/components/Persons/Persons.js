@@ -1,17 +1,19 @@
-import React ,{Component} from 'react';
+import React ,{PureComponent} from 'react';
 import Person from './Person/Person';
 
-class Persons extends Component{
+class Persons extends PureComponent{
 
 /*static getDerivedStateFromProps(props, state){
     console.log('[Persons.js] getDerivedStateFromProps');
     return state;
 }*/
 
-shouldComponentUpdate(nextProps, nestState){//*
-    console.log('[Persons.js] shouldComponentUpdate');
-    return true;
-}
+// shouldComponentUpdate(nextProps, nestState){//*
+//     console.log('[Persons.js] shouldComponentUpdate');
+//     return  nextProps.persons !== this.props.persons // if i need to test for all props , its better to use pureComponent
+//         ||  nextProps.clicked !== this.props.clicked // rather than using component and implement shouldeComp...
+//         ||  nextProps.changed !== this.props.changed;// pureComponent = component + shouldComUpdt implemented for us. 
+// }
 
 getSnapshotBeforeUpdate(prevProps, prevState){
     console.log('[Persons.js] getSnapshotBeforeUpdate');
