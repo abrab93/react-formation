@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Aux from '../../../hoc/Auxilary';
 import withClass from '../../../hoc/withClass';
 import PropTypes from 'prop-types'; // npm install --save prop-types
+import AuthContext from '../../../context/auth-context';
 
 import classes from './Person.css';
 
@@ -16,17 +17,19 @@ class Person extends Component {
         this.inputElemRef.current.focus();
     }
 
-    render(){ 
+    render(){
     console.log('[Person.js] rendering...');
         return (
             <Aux>
-                {this.props.isAuth ? <p> Authenticated </p> : <p> Please Log in !!</p>}
+                <AuthContext.Consumer>
+                   { context => context.authenticated ? <p> Authenticated </p> : <p> Please Log in !!</p>}
+                </AuthContext.Consumer>
                 <p onClick={this.props.click}>I'm {this.props.name} and i will get rich after this.{this.props.years} years !!</p>
                 <p>{this.props.children}</p>
-                <input  
+                <input
                     ref={this.inputElemRef}
-                    type='text' 
-                    onChange={this.props.changed} 
+                    type='text'
+                    onChange={this.props.changed}
                     value={this.props.name}></input>
             </Aux>
         )

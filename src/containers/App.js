@@ -4,6 +4,7 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import withClass from '../hoc/withClass';
 import Aux from '../hoc/Auxilary';
+import AuthContext from '../context/auth-context';
 
 
 class App extends Component {
@@ -62,11 +63,11 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
     // when we depend on the prev state its better to use setState with the anonymous fonction as a parametre not the one with object version
-    // in this cas we have to increment changeCounter on every keyStrok , as result we need the old state for this var so we can add 1 to it .. 
+    // in this cas we have to increment changeCounter on every keyStrok , as result we need the old state for this var so we can add 1 to it ..
     this.setState((prevState, props) => {
-      return { 
-        persons: persons, 
-        changeCounter: prevState.changeCounter + 1 
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1
       };
     });
   }
@@ -98,15 +99,18 @@ class App extends Component {
             }}>
                 Remove Cockpit
             </button>
-            { this.state.showCockpit ?
-                <Cockpit
-                    appTitle={this.props.appTitle}
-                    clicked={this.togglePersonsHandler}
-                    personsLength={this.state.persons.length}
-                    showPersons={this.state.showPersons} 
-                    login={this.loginHandler}/>
-            : null}
-                {persons}
+            <AuthContext.Provider value={{authenticated: this.state.isAuthenticated, login: this.loginHandler}}>
+                { this.state.showCockpit ?
+                    <Cockpit
+                        appTitle={this.props.appTitle}
+                        clicked={this.togglePersonsHandler}
+                        personsLength={this.state.persons.length}
+                        showPersons={this.state.showPersons}
+                        login={this.loginHandler}
+                    />
+                : null}
+                    {persons}
+            </AuthContext.Provider>
         </Aux>
     );
 
